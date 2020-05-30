@@ -1,0 +1,13 @@
+BasedOnStyle: Google
+
+IndentWidth: 4
+ColumnLimit: 120
+
+AlignEscapedNewlinesLeft: true
+AlignTrailingComments: true
+
+BreakConstructorInitializersBeforeComma: true
+
+BinPackParameters: false
+
+SortIncludes: false
