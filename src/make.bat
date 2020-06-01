@@ -1,3 +1,0 @@
-set INCLUDE=C:\FASM\INCLUDE;%cd%
-set PATH=%PATH%;C:\FASM
-fasm.exe ARX.ASM

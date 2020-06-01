@@ -39,9 +39,21 @@ message("CONAN_INCLUDE_DIRS=${CONAN_INCLUDE_DIRS}")
 message("CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
 message("CMAKE_EXE_LINKER_FLAGS=${CMAKE_EXE_LINKER_FLAGS}")
 
-
 ##################################################
 # Main taget
-add_executable(arx src/main.cpp src/hexcodec.h)
+add_executable(arx
+	src/main.cpp
+	src/hexcodec.h)
 target_include_directories(arx PUBLIC src)
 target_link_libraries(arx ${CONAN_LIBS})
+
+##################################################
+# ARX.DLL
+set(FASM_PATH "C:/FASM")
+add_custom_command(
+	TARGET arx POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E env "PATH=${FASM_PATH}" "INCLUDE=${FASM_PATH}/INCLUDE;${CMAKE_CURRENT_LIST_DIR}/src" fasm.exe ARX.ASM
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different ARX.DLL ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+	BYPRODUCTS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ARX.DLL
+	WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/src
+)

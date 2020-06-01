@@ -1,7 +1,3 @@
-@cd src
-@call make.bat
-@cd ..
-
 @mkdir build64msvc
 @cd build64msvc
 @conan install .. -s compiler.version=15 -s compiler.runtime=MT -s compiler.toolset=v141_xp -s arch=x86_64 -s build_type=Release --build=missing

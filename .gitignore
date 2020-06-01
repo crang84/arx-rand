@@ -1,3 +1,4 @@
 *.dll
 .vscode
+tests
 build64msvc
